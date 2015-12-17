@@ -1,0 +1,313 @@
+#|
+$Source $Yail
+|#
+
+(define-form appinventor.ai_abel2512.JuegoAppinventor_Abel_ver3.Screen2 Screen2)
+(require <com.google.youngandroid.runtime>)
+
+(def g$hole (call-yail-primitive make-yail-list (*list-for-runtime* ) '() "make a list"))
+(def (p$movertopo )  (let ( ($currenthole (call-yail-primitive yail-list-pick-random (*list-for-runtime* (get-var g$hole) ) '(list) "pick random item"))  )   (call-component-method 'topo 'MoveTo (*list-for-runtime* (get-property-and-check  (lexical-value $currenthole) 'ImageSprite 'X)  (get-property-and-check  (lexical-value $currenthole) 'ImageSprite 'Y)) '(number number)) ))
+(def (p$movertopo2 )  (let ( ($currenthole (call-yail-primitive yail-list-pick-random (*list-for-runtime* (get-var g$hole) ) '(list) "pick random item"))  )   (call-component-method 'topo2 'MoveTo (*list-for-runtime* (get-property-and-check  (lexical-value $currenthole) 'ImageSprite 'X)  (get-property-and-check  (lexical-value $currenthole) 'ImageSprite 'Y)) '(number number)) ))
+;;; Screen2
+
+(do-after-form-creation (set-and-coerce-property! 'Screen2 'AppName "MoleMash2_MIT" 'text)
+ (set-and-coerce-property! 'Screen2 'BackgroundColor #xFF888888 'number)
+ (set-and-coerce-property! 'Screen2 'BackgroundImage "hoyo1.jpg" 'text)
+ (set-and-coerce-property! 'Screen2 'Title "NIVEL 3" 'text)
+)
+
+(define-event Screen2 Initialize()(set-this-form)
+    (call-yail-primitive yail-list-add-to-list! (*list-for-runtime* (get-var g$hole) (get-component hole1) (get-component hole2) (get-component hole3) (get-component hole4) (get-component hole5) (get-component hole6) (get-component hole7) (get-component hole8) (get-component hole9) (get-component hole10) (get-component hole11) (get-component hole12) (get-component hole13) ) '(list any any any any any any any any any any any any any ) "add items to list")(foreach $hole (begin   (set-and-coerce-property-and-check! (lexical-value $hole) 'ImageSprite 'Picture "hole.png" 'text)) (get-var g$hole))((get-var p$movertopo) ))
+;;; Lienzo2
+
+(add-component Screen2 Canvas Lienzo2 
+(set-and-coerce-property! 'Lienzo2 'FontSize 1 'number)
+
+(set-and-coerce-property! 'Lienzo2 'Height 0 'number)
+
+(set-and-coerce-property! 'Lienzo2 'Width 0 'number)
+
+(set-and-coerce-property! 'Lienzo2 'Visible #f 'boolean)
+
+)
+
+;;; Lienzo1
+
+(add-component Screen2 Canvas Lienzo1 
+(set-and-coerce-property! 'Lienzo1 'BackgroundColor #x00FFFFFF 'number)
+
+(set-and-coerce-property! 'Lienzo1 'Height -2 'number)
+
+(set-and-coerce-property! 'Lienzo1 'Width 320 'number)
+
+)
+
+;;; topo
+
+(add-component Lienzo1 ImageSprite topo 
+(set-and-coerce-property! 'topo 'Picture "mole.png" 'text)
+
+(set-and-coerce-property! 'topo 'X 165 'number)
+
+(set-and-coerce-property! 'topo 'Y 236 'number)
+
+(set-and-coerce-property! 'topo 'Z 2 'number)
+
+)
+
+(define-event topo Touched($x $y)(set-this-form)
+    (set-and-coerce-property! 'Text_puntos 'Text (call-yail-primitive + (*list-for-runtime* 1 (get-property 'Text_puntos 'Text) ) '(number number ) "+") 'text)(call-component-method 'Sound2 'Play (*list-for-runtime*) '())(call-component-method 'Sound2 'Vibrate (*list-for-runtime* 300) '(number))(set-and-coerce-property! 'Clock1 'TimerInterval (call-yail-primitive - (*list-for-runtime* (get-property 'Clock1 'TimerInterval) 10) '(number number) "-") 'number)((get-var p$movertopo) ))
+;;; hole6
+
+(add-component Lienzo1 ImageSprite hole6 
+(set-and-coerce-property! 'hole6 'X 38 'number)
+
+(set-and-coerce-property! 'hole6 'Y 32 'number)
+
+)
+
+;;; hole1
+
+(add-component Lienzo1 ImageSprite hole1 
+(set-and-coerce-property! 'hole1 'X -3 'number)
+
+(set-and-coerce-property! 'hole1 'Y 140 'number)
+
+)
+
+;;; hole2
+
+(add-component Lienzo1 ImageSprite hole2 
+(set-and-coerce-property! 'hole2 'X 172 'number)
+
+(set-and-coerce-property! 'hole2 'Y 70 'number)
+
+)
+
+;;; hole8
+
+(add-component Lienzo1 ImageSprite hole8 
+(set-and-coerce-property! 'hole8 'X 191 'number)
+
+(set-and-coerce-property! 'hole8 'Y 190 'number)
+
+)
+
+;;; hole10
+
+(add-component Lienzo1 ImageSprite hole10 
+(set-and-coerce-property! 'hole10 'X 270 'number)
+
+(set-and-coerce-property! 'hole10 'Y 331 'number)
+
+)
+
+;;; hole3
+
+(add-component Lienzo1 ImageSprite hole3 
+(set-and-coerce-property! 'hole3 'X 217 'number)
+
+(set-and-coerce-property! 'hole3 'Y 14 'number)
+
+)
+
+;;; hole13
+
+(add-component Lienzo1 ImageSprite hole13 
+(set-and-coerce-property! 'hole13 'X 262 'number)
+
+(set-and-coerce-property! 'hole13 'Y 70 'number)
+
+)
+
+;;; hole4
+
+(add-component Lienzo1 ImageSprite hole4 
+(set-and-coerce-property! 'hole4 'X 262 'number)
+
+(set-and-coerce-property! 'hole4 'Y 258 'number)
+
+)
+
+;;; hole7
+
+(add-component Lienzo1 ImageSprite hole7 
+(set-and-coerce-property! 'hole7 'X 84 'number)
+
+(set-and-coerce-property! 'hole7 'Y 102 'number)
+
+)
+
+;;; hole11
+
+(add-component Lienzo1 ImageSprite hole11 
+(set-and-coerce-property! 'hole11 'X 36 'number)
+
+(set-and-coerce-property! 'hole11 'Y 256 'number)
+
+)
+
+;;; hole5
+
+(add-component Lienzo1 ImageSprite hole5 
+(set-and-coerce-property! 'hole5 'X 121 'number)
+
+(set-and-coerce-property! 'hole5 'Y 231 'number)
+
+)
+
+;;; hole9
+
+(add-component Lienzo1 ImageSprite hole9 
+(set-and-coerce-property! 'hole9 'X 169 'number)
+
+(set-and-coerce-property! 'hole9 'Y 318 'number)
+
+)
+
+;;; hole12
+
+(add-component Lienzo1 ImageSprite hole12 
+(set-and-coerce-property! 'hole12 'X 267 'number)
+
+(set-and-coerce-property! 'hole12 'Y 148 'number)
+
+)
+
+;;; topo2
+
+(add-component Lienzo1 ImageSprite topo2 
+(set-and-coerce-property! 'topo2 'Picture "mole.png" 'text)
+
+(set-and-coerce-property! 'topo2 'X 33 'number)
+
+(set-and-coerce-property! 'topo2 'Y 33 'number)
+
+)
+
+(define-event topo2 Touched($x $y)(set-this-form)
+    (set-and-coerce-property! 'Text_puntos 'Text (call-yail-primitive + (*list-for-runtime* 2 (get-property 'Text_puntos 'Text) ) '(number number ) "+") 'text)(call-component-method 'Sound1 'Play (*list-for-runtime*) '())(call-component-method 'Sound1 'Vibrate (*list-for-runtime* 300) '(number))(set-and-coerce-property! 'Clock2 'TimerInterval (call-yail-primitive - (*list-for-runtime* (get-property 'Clock2 'TimerInterval) 10) '(number number) "-") 'number)((get-var p$movertopo2) ))
+;;; HorizontalArrangement1
+
+(add-component Screen2 HorizontalArrangement HorizontalArrangement1 
+)
+
+;;; Label1
+
+(add-component HorizontalArrangement1 Label Label1 
+(set-and-coerce-property! 'Label1 'FontBold #t 'boolean)
+
+(set-and-coerce-property! 'Label1 'FontSize 17.0 'number)
+
+(set-and-coerce-property! 'Label1 'Text "PUNTUACI\u00d3N:" 'text)
+
+)
+
+;;; Text_puntos
+
+(add-component HorizontalArrangement1 TextBox Text_puntos 
+(set-and-coerce-property! 'Text_puntos 'BackgroundColor #xFFFFFFFF 'number)
+
+(set-and-coerce-property! 'Text_puntos 'Enabled #f 'boolean)
+
+(set-and-coerce-property! 'Text_puntos 'FontSize 10 'number)
+
+(set-and-coerce-property! 'Text_puntos 'Height 30 'number)
+
+(set-and-coerce-property! 'Text_puntos 'Width 33 'number)
+
+(set-and-coerce-property! 'Text_puntos 'Hint "Hint for TextBox1" 'text)
+
+(set-and-coerce-property! 'Text_puntos 'Text "0" 'text)
+
+)
+
+;;; Label2
+
+(add-component HorizontalArrangement1 Label Label2 
+(set-and-coerce-property! 'Label2 'FontBold #t 'boolean)
+
+(set-and-coerce-property! 'Label2 'FontSize 17 'number)
+
+(set-and-coerce-property! 'Label2 'Text "--  TIEMPO:" 'text)
+
+)
+
+;;; puntos
+
+(add-component HorizontalArrangement1 Label puntos 
+(set-and-coerce-property! 'puntos 'BackgroundColor #xFFFFFFFF 'number)
+
+(set-and-coerce-property! 'puntos 'FontSize 17 'number)
+
+(set-and-coerce-property! 'puntos 'Text "0" 'text)
+
+)
+
+;;; HorizontalArrangement2
+
+(add-component Screen2 HorizontalArrangement HorizontalArrangement2 
+)
+
+;;; Boton_volver
+
+(add-component HorizontalArrangement2 Button Boton_volver 
+(set-and-coerce-property! 'Boton_volver 'BackgroundColor #x00FFFFFF 'number)
+
+(set-and-coerce-property! 'Boton_volver 'Text "Volver juego 1" 'text)
+
+)
+
+(define-event Boton_volver Click()(set-this-form)
+    (call-yail-primitive open-another-screen (*list-for-runtime* "Screen1") '(text) "open another screen"))
+;;; Reiniciar_puntos
+
+(add-component HorizontalArrangement2 Button Reiniciar_puntos 
+(set-and-coerce-property! 'Reiniciar_puntos 'BackgroundColor #x00FFFFFF 'number)
+
+(set-and-coerce-property! 'Reiniciar_puntos 'Text "Reiniciar puntos" 'text)
+
+)
+
+(define-event Reiniciar_puntos Click()(set-this-form)
+    (set-and-coerce-property! 'Text_puntos 'Text 0 'text)(set-and-coerce-property! 'Clock1 'TimerInterval 900 'number)(set-and-coerce-property! 'Clock2 'TimerInterval 700 'number)(set-and-coerce-property! 'TIEMPO 'Text 0 'text))
+;;; Clock1
+
+(add-component Screen2 Clock Clock1 
+(set-and-coerce-property! 'Clock1 'TimerInterval 900 'number)
+
+)
+
+(define-event Clock1 Timer()(set-this-form)
+    ((get-var p$movertopo) ))
+;;; Sound1
+
+(add-component Screen2 Sound Sound1 
+(set-and-coerce-property! 'Sound1 'Source "bip_5.mp3" 'text)
+
+)
+
+;;; Clock2
+
+(add-component Screen2 Clock Clock2 
+(set-and-coerce-property! 'Clock2 'TimerInterval 700 'number)
+
+)
+
+(define-event Clock2 Timer()(set-this-form)
+    ((get-var p$movertopo2) ))
+;;; Sound2
+
+(add-component Screen2 Sound Sound2 
+(set-and-coerce-property! 'Sound2 'Source "beep2.mp3" 'text)
+
+)
+
+;;; Clock3
+
+(add-component Screen2 Clock Clock3 
+)
+
+(define-event Clock3 Timer()(set-this-form)
+    (set-and-coerce-property! 'TIEMPO 'Text (call-yail-primitive + (*list-for-runtime* (get-property 'TIEMPO 'Text) 1 ) '(number number ) "+") 'text))
+(init-runtime)

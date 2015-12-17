@@ -1,0 +1,44 @@
+#|
+$Source $Yail
+|#
+
+(define-form appinventor.ai_abel2512.JuegoAppinventor_Abel_ver3.ayuda ayuda)
+(require <com.google.youngandroid.runtime>)
+
+;;; ayuda
+
+(do-after-form-creation (set-and-coerce-property! 'ayuda 'AppName "JuegoAppinventor_Abel_ver3" 'text)
+ (set-and-coerce-property! 'ayuda 'BackgroundImage "fondo3.jpg" 'text)
+ (set-and-coerce-property! 'ayuda 'Title "ayuda" 'text)
+)
+
+;;; Etiqueta1
+
+(add-component ayuda Label Etiqueta1 
+(set-and-coerce-property! 'Etiqueta1 'FontSize 20 'number)
+
+(set-and-coerce-property! 'Etiqueta1 'Text "AYUDA Y REGLAS DEL JUEGO TOPIN. Topin es un juego tradicional que consiste en tocar al topo que va apareciendo en los agujeros de la pantalla. El topo aparecer\u00e1 y desaparecer\u00e1, si logramos tocar el topo antes de que desaparezca, conseguiremos incrementar nuestra puntuaci\u00f3n. Dispondremos un un determinado tiempo en el cu\u00e1l debemos obtener una puntuaci\u00f3n m\u00ednima para pasar al siguiente nivel." 'text)
+
+(set-and-coerce-property! 'Etiqueta1 'TextAlignment 1 'number)
+
+(set-and-coerce-property! 'Etiqueta1 'TextColor #xFFFFFFFF 'number)
+
+)
+
+;;; CampoDeTexto1
+
+(add-component ayuda TextBox CampoDeTexto1 
+(set-and-coerce-property! 'CampoDeTexto1 'BackgroundColor #x00FFFFFF 'number)
+
+)
+
+;;; Button1
+
+(add-component ayuda Button Button1 
+(set-and-coerce-property! 'Button1 'Text "VOLVER AL MENU" 'text)
+
+)
+
+(define-event Button1 Click()(set-this-form)
+    (call-yail-primitive open-another-screen (*list-for-runtime* "Screen1") '(text) "open another screen"))
+(init-runtime)

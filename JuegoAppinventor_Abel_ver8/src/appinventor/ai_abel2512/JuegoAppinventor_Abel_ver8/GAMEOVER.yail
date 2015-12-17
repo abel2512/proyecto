@@ -1,0 +1,112 @@
+#|
+$Source $Yail
+|#
+
+(define-form appinventor.ai_abel2512.JuegoAppinventor_Abel_ver3.GAMEOVER GAMEOVER)
+(require <com.google.youngandroid.runtime>)
+
+(def (p$procedure2 )  (if (call-yail-primitive > (*list-for-runtime* (get-property 'puntuacion 'Text) (get-property 'puntosmaximos 'Text)) '(number number) ">") (begin   (set-and-coerce-property! 'superapuntos 'Text "ENHORABUENA, SUPERA PUNTUACI\u00d3N M\u00c1XIMA" 'text)(call-component-method 'TinyBD1 'StoreValue (*list-for-runtime* "PUNTOSMAXIMOS"  (get-property 'puntuacion 'Text)) '(text any))(call-component-method 'TinyBD1 'StoreValue (*list-for-runtime* "USUARIO1"  (call-component-method 'TinyBD1 'GetValue (*list-for-runtime* "USUARIO"  "SIN IDENTIFICAR") '(text any))) '(text any)))))
+;;; GAMEOVER
+
+(do-after-form-creation (set-and-coerce-property! 'GAMEOVER 'AlignHorizontal 3 'number)
+ (set-and-coerce-property! 'GAMEOVER 'AppName "JuegoAppinventor_Abel_ver3" 'text)
+ (set-and-coerce-property! 'GAMEOVER 'BackgroundImage "minion_evil_g.png" 'text)
+ (set-and-coerce-property! 'GAMEOVER 'Title "GAMEOVER" 'text)
+)
+
+(define-event GAMEOVER Initialize()(set-this-form)
+    (set-and-coerce-property! 'puntuacion 'Text (call-component-method 'TinyBD1 'GetValue (*list-for-runtime* "PUNTUACION"  "0") '(text any)) 'text)(set-and-coerce-property! 'puntosmaximos 'Text (call-component-method 'TinyBD1 'GetValue (*list-for-runtime* "PUNTOSMAXIMOS"  "0") '(text any)) 'text)(set-and-coerce-property! 'puntosconseguir 'Text (call-component-method 'TinyBD1 'GetValue (*list-for-runtime* "PUNTOSPARAPASAR"  "0") '(text any)) 'text)((get-var p$procedure2) ))
+;;; Etiqueta2
+
+(add-component GAMEOVER Label Etiqueta2 
+(set-and-coerce-property! 'Etiqueta2 'FontSize 40 'number)
+
+(set-and-coerce-property! 'Etiqueta2 'Text "GAME OVER" 'text)
+
+(set-and-coerce-property! 'Etiqueta2 'TextAlignment 1 'number)
+
+)
+
+;;; Etiqueta3
+
+(add-component GAMEOVER Label Etiqueta3 
+(set-and-coerce-property! 'Etiqueta3 'FontSize 20 'number)
+
+(set-and-coerce-property! 'Etiqueta3 'Text "Su puntuaci\u00f3n ha sido de:" 'text)
+
+)
+
+;;; puntuacion
+
+(add-component GAMEOVER Label puntuacion 
+(set-and-coerce-property! 'puntuacion 'FontSize 30 'number)
+
+(set-and-coerce-property! 'puntuacion 'Text "0" 'text)
+
+)
+
+;;; Label1
+
+(add-component GAMEOVER Label Label1 
+(set-and-coerce-property! 'Label1 'FontSize 20 'number)
+
+(set-and-coerce-property! 'Label1 'Text "Para pasar de nivel al menos debe conseguir  los siguientes puntos:" 'text)
+
+(set-and-coerce-property! 'Label1 'TextAlignment 1 'number)
+
+)
+
+;;; puntosconseguir
+
+(add-component GAMEOVER Label puntosconseguir 
+(set-and-coerce-property! 'puntosconseguir 'FontSize 30 'number)
+
+(set-and-coerce-property! 'puntosconseguir 'Text "0" 'text)
+
+)
+
+;;; Botón1
+
+(add-component GAMEOVER Button Botón1 
+(set-and-coerce-property! 'Botón1 'Text "VOLVER A MENU" 'text)
+
+)
+
+(define-event Botón1 Click()(set-this-form)
+    (call-yail-primitive open-another-screen (*list-for-runtime* "Screen1") '(text) "open another screen"))
+;;; HorizontalArrangement1
+
+(add-component GAMEOVER HorizontalArrangement HorizontalArrangement1 
+)
+
+;;; Label2
+
+(add-component HorizontalArrangement1 Label Label2 
+(set-and-coerce-property! 'Label2 'FontSize 20 'number)
+
+(set-and-coerce-property! 'Label2 'Text "Puntuaci\u00f3n m\u00e1xima:" 'text)
+
+)
+
+;;; puntosmaximos
+
+(add-component HorizontalArrangement1 Label puntosmaximos 
+(set-and-coerce-property! 'puntosmaximos 'FontSize 25 'number)
+
+(set-and-coerce-property! 'puntosmaximos 'Text "0" 'text)
+
+)
+
+;;; superapuntos
+
+(add-component GAMEOVER Label superapuntos 
+(set-and-coerce-property! 'superapuntos 'Text "No supera la puntuaci\u00f3n m\u00e1xima" 'text)
+
+)
+
+;;; TinyBD1
+
+(add-component GAMEOVER TinyDB TinyBD1 
+)
+
+(init-runtime)

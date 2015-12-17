@@ -1,0 +1,150 @@
+#|
+$Source $Yail
+|#
+
+(define-form appinventor.ai_abel2512.JuegoAppinventor_Abel_ver3.Screen1 Screen1)
+(require <com.google.youngandroid.runtime>)
+
+;;; Screen1
+
+(do-after-form-creation (set-and-coerce-property! 'Screen1 'AlignHorizontal 3 'number)
+ (set-and-coerce-property! 'Screen1 'AppName "JuegoAbel" 'text)
+ (set-and-coerce-property! 'Screen1 'BackgroundImage "fondosol.png" 'text)
+ (set-and-coerce-property! 'Screen1 'Icon "mole.png" 'text)
+ (set-and-coerce-property! 'Screen1 'Scrollable #t 'boolean)
+ (set-and-coerce-property! 'Screen1 'Title "JUEGO TOPIN" 'text)
+)
+
+(define-event Screen1 Initialize()(set-this-form)
+    (set-and-coerce-property! 'CampoDeTexto3 'Text (call-component-method 'TinyBD1 'GetValue (*list-for-runtime* "USUARIO"  "DESCONOCIDO") '(text any)) 'text))
+;;; CampoDeTexto1
+
+(add-component Screen1 TextBox CampoDeTexto1 
+(set-and-coerce-property! 'CampoDeTexto1 'BackgroundColor #x00FFFFFF 'number)
+
+(set-and-coerce-property! 'CampoDeTexto1 'FontBold #t 'boolean)
+
+(set-and-coerce-property! 'CampoDeTexto1 'FontItalic #t 'boolean)
+
+(set-and-coerce-property! 'CampoDeTexto1 'FontSize 25 'number)
+
+(set-and-coerce-property! 'CampoDeTexto1 'Hint "Pista para CampoDeTexto1" 'text)
+
+(set-and-coerce-property! 'CampoDeTexto1 'Text "OPCIONES" 'text)
+
+(set-and-coerce-property! 'CampoDeTexto1 'TextAlignment 1 'number)
+
+(set-and-coerce-property! 'CampoDeTexto1 'TextColor #xFFFFFFFF 'number)
+
+)
+
+;;; CampoDeTexto2
+
+(add-component Screen1 TextBox CampoDeTexto2 
+(set-and-coerce-property! 'CampoDeTexto2 'BackgroundColor #x00FFFFFF 'number)
+
+)
+
+;;; Botón1
+
+(add-component Screen1 Button Botón1 
+(set-and-coerce-property! 'Botón1 'Width 110 'number)
+
+(set-and-coerce-property! 'Botón1 'Shape 3 'number)
+
+(set-and-coerce-property! 'Botón1 'Text "AYUDA" 'text)
+
+)
+
+(define-event Botón1 Click()(set-this-form)
+    (call-yail-primitive open-another-screen (*list-for-runtime* "ayuda") '(text) "open another screen"))
+;;; Botón2
+
+(add-component Screen1 Button Botón2 
+(set-and-coerce-property! 'Botón2 'Width 110 'number)
+
+(set-and-coerce-property! 'Botón2 'Shape 3 'number)
+
+(set-and-coerce-property! 'Botón2 'Text "AJUSTES" 'text)
+
+)
+
+(define-event Botón2 Click()(set-this-form)
+    (call-yail-primitive open-another-screen (*list-for-runtime* "ajustes") '(text) "open another screen"))
+;;; Botón4
+
+(add-component Screen1 Button Botón4 
+(set-and-coerce-property! 'Botón4 'Shape 3 'number)
+
+(set-and-coerce-property! 'Botón4 'Text "PUNTUACIONES" 'text)
+
+)
+
+(define-event Botón4 Click()(set-this-form)
+    (call-yail-primitive open-another-screen (*list-for-runtime* "Screen3") '(text) "open another screen"))
+;;; Botón5
+
+(add-component Screen1 Button Botón5 
+(set-and-coerce-property! 'Botón5 'Width 110 'number)
+
+(set-and-coerce-property! 'Botón5 'Shape 3 'number)
+
+(set-and-coerce-property! 'Botón5 'Text "JUGAR" 'text)
+
+)
+
+(define-event Botón5 Click()(set-this-form)
+    (call-yail-primitive open-another-screen (*list-for-runtime* "nivel1") '(text) "open another screen"))
+;;; DisposiciónHorizontal1
+
+(add-component Screen1 HorizontalArrangement DisposiciónHorizontal1 
+)
+
+;;; Etiqueta1
+
+(add-component DisposiciónHorizontal1 Label Etiqueta1 
+(set-and-coerce-property! 'Etiqueta1 'FontSize 20 'number)
+
+(set-and-coerce-property! 'Etiqueta1 'Text "Usuario: " 'text)
+
+)
+
+;;; CampoDeTexto3
+
+(add-component DisposiciónHorizontal1 TextBox CampoDeTexto3 
+(set-and-coerce-property! 'CampoDeTexto3 'BackgroundColor #x00FFFFFF 'number)
+
+(set-and-coerce-property! 'CampoDeTexto3 'Hint "Pista para CampoDeTexto3" 'text)
+
+)
+
+;;; Label1
+
+(add-component Screen1 Label Label1 
+(set-and-coerce-property! 'Label1 'FontSize 22 'number)
+
+(set-and-coerce-property! 'Label1 'Text "Autor: Abel" 'text)
+
+)
+
+;;; MoleClock
+
+(add-component Screen1 Clock MoleClock 
+)
+
+;;; Buzzer
+
+(add-component Screen1 Sound Buzzer 
+)
+
+;;; Sound1
+
+(add-component Screen1 Sound Sound1 
+)
+
+;;; TinyBD1
+
+(add-component Screen1 TinyDB TinyBD1 
+)
+
+(init-runtime)

@@ -1,0 +1,4 @@
+#|
+$JSON
+{"YaVersion":"140","Source":"Form","Properties":{"$Name":"PASANIVEL3","$Type":"Form","$Version":"18","AlignHorizontal":"3","AppName":"JuegoAppinventor_Abel_ver3","BackgroundImage":"MINIONSPASA.jpg","Title":"PASANIVEL3","Uuid":"0","$Components":[{"$Name":"Etiqueta1","$Type":"Label","$Version":"3","FontSize":"20","Text":"ENHORABUENA, PASA AL NIVEL 3","TextAlignment":"1","Uuid":"1576309521"},{"$Name":"Etiqueta2","$Type":"Label","$Version":"3","Uuid":"-1718203426"},{"$Name":"Disposici\u00f3nHorizontal1","$Type":"HorizontalArrangement","$Version":"3","Uuid":"1444737724","$Components":[{"$Name":"Bot\u00f3n1","$Type":"Button","$Version":"6","Text":"ACEPTAR","Uuid":"-1121906772"},{"$Name":"Bot\u00f3n2","$Type":"Button","$Version":"6","Text":"VOLVER A MENU","Uuid":"-132534121"}]}]}}
+|#

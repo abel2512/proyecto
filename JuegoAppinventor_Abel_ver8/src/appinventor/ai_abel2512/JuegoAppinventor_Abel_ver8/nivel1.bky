@@ -1,0 +1,409 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <block type="global_declaration" id="1" inline="false" x="-135" y="-467">
+    <field name="NAME">holes</field>
+    <comment pinned="false" h="55" w="223">List of all ImageSprites representing mole holes</comment>
+    <value name="VALUE">
+      <block type="lists_create_with" id="2">
+        <mutation items="0"></mutation>
+      </block>
+    </value>
+  </block>
+  <block type="procedures_defnoreturn" id="3" x="332" y="-450">
+    <mutation></mutation>
+    <field name="NAME">MoveMole</field>
+    <statement name="STACK">
+      <block type="local_declaration_statement" id="4" inline="false">
+        <mutation>
+          <localname name="currentHole"></localname>
+        </mutation>
+        <field name="VAR0">currentHole</field>
+        <comment pinned="false" h="54" w="160">Randomly select one of the holes from the list</comment>
+        <value name="DECL0">
+          <block type="lists_pick_random_item" id="5" inline="false">
+            <value name="LIST">
+              <block type="lexical_variable_get" id="6">
+                <field name="VAR">global holes</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <statement name="STACK">
+          <block type="component_method" id="7" inline="false">
+            <mutation component_type="ImageSprite" method_name="MoveTo" is_generic="false" instance_name="Mole"></mutation>
+            <field name="COMPONENT_SELECTOR">Mole</field>
+            <comment pinned="false" h="48" w="132">Move the mole to its new hole</comment>
+            <value name="ARG0">
+              <block type="component_set_get" id="8" inline="false">
+                <mutation component_type="ImageSprite" set_or_get="get" property_name="X" is_generic="true"></mutation>
+                <field name="PROP">X</field>
+                <value name="COMPONENT">
+                  <block type="lexical_variable_get" id="9">
+                    <field name="VAR">currentHole</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <value name="ARG1">
+              <block type="component_set_get" id="10" inline="false">
+                <mutation component_type="ImageSprite" set_or_get="get" property_name="Y" is_generic="true"></mutation>
+                <field name="PROP">Y</field>
+                <value name="COMPONENT">
+                  <block type="lexical_variable_get" id="11">
+                    <field name="VAR">currentHole</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+  <block type="component_event" id="12" x="-139" y="-423">
+    <mutation component_type="Form" instance_name="Screen1" event_name="Initialize"></mutation>
+    <field name="COMPONENT_SELECTOR">Screen1</field>
+    <statement name="DO">
+      <block type="lists_add_items" id="13" inline="false">
+        <mutation items="5"></mutation>
+        <value name="LIST">
+          <block type="lexical_variable_get" id="14">
+            <field name="VAR">global holes</field>
+          </block>
+        </value>
+        <value name="ITEM0">
+          <block type="component_component_block" id="15">
+            <mutation component_type="ImageSprite" instance_name="Hole1"></mutation>
+            <field name="COMPONENT_SELECTOR">Hole1</field>
+          </block>
+        </value>
+        <value name="ITEM1">
+          <block type="component_component_block" id="16">
+            <mutation component_type="ImageSprite" instance_name="Hole2"></mutation>
+            <field name="COMPONENT_SELECTOR">Hole2</field>
+          </block>
+        </value>
+        <value name="ITEM2">
+          <block type="component_component_block" id="17">
+            <mutation component_type="ImageSprite" instance_name="Hole3"></mutation>
+            <field name="COMPONENT_SELECTOR">Hole3</field>
+          </block>
+        </value>
+        <value name="ITEM3">
+          <block type="component_component_block" id="18">
+            <mutation component_type="ImageSprite" instance_name="Hole4"></mutation>
+            <field name="COMPONENT_SELECTOR">Hole4</field>
+          </block>
+        </value>
+        <value name="ITEM4">
+          <block type="component_component_block" id="19">
+            <mutation component_type="ImageSprite" instance_name="Hole5"></mutation>
+            <field name="COMPONENT_SELECTOR">Hole5</field>
+          </block>
+        </value>
+        <next>
+          <block type="controls_forEach" id="20" inline="false">
+            <field name="VAR">hole</field>
+            <comment pinned="false" h="109" w="198">Set each of the ImageSprites in the holes list to have the picture of an empty hole.</comment>
+            <value name="LIST">
+              <block type="lexical_variable_get" id="21">
+                <field name="VAR">global holes</field>
+              </block>
+            </value>
+            <statement name="DO">
+              <block type="component_set_get" id="22" inline="false">
+                <mutation component_type="ImageSprite" set_or_get="set" property_name="Picture" is_generic="true"></mutation>
+                <field name="PROP">Picture</field>
+                <value name="COMPONENT">
+                  <block type="lexical_variable_get" id="23">
+                    <field name="VAR">hole</field>
+                  </block>
+                </value>
+                <value name="VALUE">
+                  <block type="text" id="24">
+                    <field name="TEXT">hole.png</field>
+                  </block>
+                </value>
+              </block>
+            </statement>
+            <next>
+              <block type="procedures_callnoreturn" id="25">
+                <mutation name="MoveMole"></mutation>
+                <field name="PROCNAME">MoveMole</field>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+  <block type="component_event" id="26" x="441" y="-91">
+    <mutation component_type="Button" instance_name="Button2" event_name="Click"></mutation>
+    <field name="COMPONENT_SELECTOR">Button2</field>
+    <statement name="DO">
+      <block type="component_set_get" id="184" inline="false">
+        <mutation component_type="Clock" set_or_get="set" property_name="TimerAlwaysFires" is_generic="false" instance_name="MoleClock"></mutation>
+        <field name="COMPONENT_SELECTOR">MoleClock</field>
+        <field name="PROP">TimerAlwaysFires</field>
+        <value name="VALUE">
+          <block type="logic_false" id="227">
+            <field name="BOOL">FALSE</field>
+          </block>
+        </value>
+        <next>
+          <block type="controls_openAnotherScreen" id="27" inline="false">
+            <value name="SCREEN">
+              <block type="text" id="28">
+                <field name="TEXT">Screen1</field>
+              </block>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+  <block type="component_event" id="29" x="-149" y="-49">
+    <mutation component_type="ImageSprite" instance_name="Mole" event_name="Touched"></mutation>
+    <field name="COMPONENT_SELECTOR">Mole</field>
+    <statement name="DO">
+      <block type="component_set_get" id="30" inline="false">
+        <mutation component_type="Label" set_or_get="set" property_name="Text" is_generic="false" instance_name="ScoreValueLabel"></mutation>
+        <field name="COMPONENT_SELECTOR">ScoreValueLabel</field>
+        <field name="PROP">Text</field>
+        <value name="VALUE">
+          <block type="math_add" id="31" inline="true">
+            <mutation items="2"></mutation>
+            <value name="NUM0">
+              <block type="math_number" id="32">
+                <field name="NUM">1</field>
+              </block>
+            </value>
+            <value name="NUM1">
+              <block type="component_set_get" id="33">
+                <mutation component_type="Label" set_or_get="get" property_name="Text" is_generic="false" instance_name="ScoreValueLabel"></mutation>
+                <field name="COMPONENT_SELECTOR">ScoreValueLabel</field>
+                <field name="PROP">Text</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="component_method" id="34" inline="false">
+            <mutation component_type="Sound" method_name="Vibrate" is_generic="false" instance_name="Buzzer"></mutation>
+            <field name="COMPONENT_SELECTOR">Buzzer</field>
+            <value name="ARG0">
+              <block type="math_number" id="35">
+                <field name="NUM">100</field>
+              </block>
+            </value>
+            <next>
+              <block type="procedures_callnoreturn" id="36">
+                <mutation name="MoveMole"></mutation>
+                <field name="PROCNAME">MoveMole</field>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+  <block type="component_event" id="37" x="61" y="184">
+    <mutation component_type="Clock" instance_name="MoleClock" event_name="Timer"></mutation>
+    <field name="COMPONENT_SELECTOR">MoleClock</field>
+    <statement name="DO">
+      <block type="procedures_callnoreturn" id="38">
+        <mutation name="MoveMole"></mutation>
+        <field name="PROCNAME">MoveMole</field>
+        <next>
+          <block type="component_set_get" id="39" inline="false">
+            <mutation component_type="Label" set_or_get="set" property_name="Text" is_generic="false" instance_name="tiempo"></mutation>
+            <field name="COMPONENT_SELECTOR">tiempo</field>
+            <field name="PROP">Text</field>
+            <value name="VALUE">
+              <block type="math_add" id="40" inline="true">
+                <mutation items="2"></mutation>
+                <value name="NUM0">
+                  <block type="math_number" id="41">
+                    <field name="NUM">1</field>
+                  </block>
+                </value>
+                <value name="NUM1">
+                  <block type="component_set_get" id="42">
+                    <mutation component_type="Label" set_or_get="get" property_name="Text" is_generic="false" instance_name="tiempo"></mutation>
+                    <field name="COMPONENT_SELECTOR">tiempo</field>
+                    <field name="PROP">Text</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <next>
+              <block type="procedures_callnoreturn" id="43">
+                <mutation name="fintiempo"></mutation>
+                <field name="PROCNAME">fintiempo</field>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+  <block type="procedures_defnoreturn" id="44" x="123" y="336">
+    <mutation></mutation>
+    <field name="NAME">fintiempo</field>
+    <statement name="STACK">
+      <block type="component_method" id="45" inline="false">
+        <mutation component_type="TinyDB" method_name="StoreValue" is_generic="false" instance_name="TinyBD1"></mutation>
+        <field name="COMPONENT_SELECTOR">TinyBD1</field>
+        <value name="ARG0">
+          <block type="text" id="46">
+            <field name="TEXT">PUNTUACION</field>
+          </block>
+        </value>
+        <value name="ARG1">
+          <block type="component_set_get" id="47">
+            <mutation component_type="Label" set_or_get="get" property_name="Text" is_generic="false" instance_name="ScoreValueLabel"></mutation>
+            <field name="COMPONENT_SELECTOR">ScoreValueLabel</field>
+            <field name="PROP">Text</field>
+          </block>
+        </value>
+        <next>
+          <block type="controls_if" id="48" inline="false">
+            <value name="IF0">
+              <block type="text_compare" id="49" inline="true">
+                <field name="OP">EQUAL</field>
+                <value name="TEXT1">
+                  <block type="component_set_get" id="50">
+                    <mutation component_type="Label" set_or_get="get" property_name="Text" is_generic="false" instance_name="tiempo"></mutation>
+                    <field name="COMPONENT_SELECTOR">tiempo</field>
+                    <field name="PROP">Text</field>
+                  </block>
+                </value>
+                <value name="TEXT2">
+                  <block type="text" id="51">
+                    <field name="TEXT">20</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <statement name="DO0">
+              <block type="procedures_callnoreturn" id="52">
+                <mutation name="pasarnivel"></mutation>
+                <field name="PROCNAME">pasarnivel</field>
+              </block>
+            </statement>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+  <block type="procedures_defnoreturn" id="53" x="0" y="576">
+    <mutation></mutation>
+    <field name="NAME">pasarnivel</field>
+    <statement name="STACK">
+      <block type="component_method" id="54" inline="false">
+        <mutation component_type="TinyDB" method_name="StoreValue" is_generic="false" instance_name="TinyBD1"></mutation>
+        <field name="COMPONENT_SELECTOR">TinyBD1</field>
+        <value name="ARG0">
+          <block type="text" id="55">
+            <field name="TEXT">PUNTOSPARAPASAR</field>
+          </block>
+        </value>
+        <value name="ARG1">
+          <block type="text" id="56">
+            <field name="TEXT">5</field>
+          </block>
+        </value>
+        <next>
+          <block type="controls_if" id="57" inline="false">
+            <value name="IF0">
+              <block type="math_compare" id="58" inline="true">
+                <field name="OP">LT</field>
+                <value name="A">
+                  <block type="component_set_get" id="59">
+                    <mutation component_type="Label" set_or_get="get" property_name="Text" is_generic="false" instance_name="ScoreValueLabel"></mutation>
+                    <field name="COMPONENT_SELECTOR">ScoreValueLabel</field>
+                    <field name="PROP">Text</field>
+                  </block>
+                </value>
+                <value name="B">
+                  <block type="math_number" id="60">
+                    <field name="NUM">5</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <statement name="DO0">
+              <block type="controls_openAnotherScreen" id="61" inline="false">
+                <value name="SCREEN">
+                  <block type="text" id="62">
+                    <field name="TEXT">GAMEOVER</field>
+                  </block>
+                </value>
+              </block>
+            </statement>
+            <next>
+              <block type="controls_if" id="63" inline="false">
+                <value name="IF0">
+                  <block type="math_compare" id="64" inline="true">
+                    <field name="OP">EQ</field>
+                    <value name="A">
+                      <block type="component_set_get" id="65">
+                        <mutation component_type="Label" set_or_get="get" property_name="Text" is_generic="false" instance_name="ScoreValueLabel"></mutation>
+                        <field name="COMPONENT_SELECTOR">ScoreValueLabel</field>
+                        <field name="PROP">Text</field>
+                      </block>
+                    </value>
+                    <value name="B">
+                      <block type="math_number" id="66">
+                        <field name="NUM">5</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <statement name="DO0">
+                  <block type="controls_openAnotherScreen" id="67" inline="false">
+                    <value name="SCREEN">
+                      <block type="text" id="68">
+                        <field name="TEXT">PASANIVEL2</field>
+                      </block>
+                    </value>
+                  </block>
+                </statement>
+                <next>
+                  <block type="controls_if" id="69" inline="false">
+                    <value name="IF0">
+                      <block type="math_compare" id="70" inline="true">
+                        <field name="OP">GT</field>
+                        <value name="A">
+                          <block type="component_set_get" id="71">
+                            <mutation component_type="Label" set_or_get="get" property_name="Text" is_generic="false" instance_name="ScoreValueLabel"></mutation>
+                            <field name="COMPONENT_SELECTOR">ScoreValueLabel</field>
+                            <field name="PROP">Text</field>
+                          </block>
+                        </value>
+                        <value name="B">
+                          <block type="math_number" id="72">
+                            <field name="NUM">5</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <statement name="DO0">
+                      <block type="controls_openAnotherScreen" id="73" inline="false">
+                        <value name="SCREEN">
+                          <block type="text" id="74">
+                            <field name="TEXT">PASANIVEL2</field>
+                          </block>
+                        </value>
+                      </block>
+                    </statement>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+  <yacodeblocks ya-version="140" language-version="19"></yacodeblocks>
+</xml>

@@ -1,0 +1,141 @@
+#|
+$Source $Yail
+|#
+
+(define-form appinventor.ai_abel2512.JuegoAppinventor_Abel_ver3.ajustes ajustes)
+(require <com.google.youngandroid.runtime>)
+
+;;; ajustes
+
+(do-after-form-creation (set-and-coerce-property! 'ajustes 'AppName "JuegoAppinventor_Abel_ver3" 'text)
+ (set-and-coerce-property! 'ajustes 'BackgroundColor #xFF00FFFF 'number)
+ (set-and-coerce-property! 'ajustes 'BackgroundImage "fondo3.jpg" 'text)
+ (set-and-coerce-property! 'ajustes 'Title "ajustes" 'text)
+)
+
+(define-event ajustes Initialize()(set-this-form)
+    (set-and-coerce-property! 'CampoDeTexto1 'Text (call-component-method 'TinyBD1 'GetValue (*list-for-runtime* "USUARIO"  "SIN IDENTIFICAR") '(text any)) 'text)(set-and-coerce-property! 'TextBox1 'Text (call-component-method 'TinyBD1 'GetValue (*list-for-runtime* "EDAD"  "DESCONOCIDA") '(text any)) 'text)(set-and-coerce-property! 'TextBox2 'Text (call-component-method 'TinyBD1 'GetValue (*list-for-runtime* "NACIONALIDAD"  "DESCONOCIDA") '(text any)) 'text))
+;;; HorizontalArrangement1
+
+(add-component ajustes HorizontalArrangement HorizontalArrangement1 
+)
+
+;;; Label1
+
+(add-component HorizontalArrangement1 Label Label1 
+(set-and-coerce-property! 'Label1 'FontSize 20 'number)
+
+(set-and-coerce-property! 'Label1 'Text "Nombre" 'text)
+
+(set-and-coerce-property! 'Label1 'TextColor #xFFFFFFFF 'number)
+
+)
+
+;;; CampoDeTexto1
+
+(add-component HorizontalArrangement1 TextBox CampoDeTexto1 
+)
+
+;;; HorizontalArrangement2
+
+(add-component ajustes HorizontalArrangement HorizontalArrangement2 
+)
+
+;;; Label2
+
+(add-component HorizontalArrangement2 Label Label2 
+(set-and-coerce-property! 'Label2 'FontSize 20 'number)
+
+(set-and-coerce-property! 'Label2 'Text "Edad" 'text)
+
+(set-and-coerce-property! 'Label2 'TextColor #xFFFFFFFF 'number)
+
+)
+
+;;; TextBox1
+
+(add-component HorizontalArrangement2 TextBox TextBox1 
+)
+
+;;; HorizontalArrangement3
+
+(add-component ajustes HorizontalArrangement HorizontalArrangement3 
+)
+
+;;; Label3
+
+(add-component HorizontalArrangement3 Label Label3 
+(set-and-coerce-property! 'Label3 'FontSize 20 'number)
+
+(set-and-coerce-property! 'Label3 'Text "Nacionalidad" 'text)
+
+(set-and-coerce-property! 'Label3 'TextColor #xFFFFFFFF 'number)
+
+)
+
+;;; TextBox2
+
+(add-component HorizontalArrangement3 TextBox TextBox2 
+)
+
+;;; Label4
+
+(add-component ajustes Label Label4 
+(set-and-coerce-property! 'Label4 'Text "Text for Label4" 'text)
+
+(set-and-coerce-property! 'Label4 'Visible #f 'boolean)
+
+)
+
+;;; CampoDeTexto2
+
+(add-component ajustes TextBox CampoDeTexto2 
+(set-and-coerce-property! 'CampoDeTexto2 'BackgroundColor #x00FFFFFF 'number)
+
+)
+
+;;; CampoDeTexto3
+
+(add-component ajustes TextBox CampoDeTexto3 
+(set-and-coerce-property! 'CampoDeTexto3 'BackgroundColor #x00FFFFFF 'number)
+
+)
+
+;;; DisposiciónHorizontal1
+
+(add-component ajustes HorizontalArrangement DisposiciónHorizontal1 
+)
+
+;;; Botón2
+
+(add-component DisposiciónHorizontal1 Button Botón2 
+(set-and-coerce-property! 'Botón2 'Width 150 'number)
+
+(set-and-coerce-property! 'Botón2 'Text "VOLVER A MENU" 'text)
+
+)
+
+(define-event Botón2 Click()(set-this-form)
+    (call-yail-primitive open-another-screen (*list-for-runtime* "Screen1") '(text) "open another screen"))
+;;; Botón1
+
+(add-component DisposiciónHorizontal1 Button Botón1 
+(set-and-coerce-property! 'Botón1 'Width 150 'number)
+
+(set-and-coerce-property! 'Botón1 'Text "GUARDAR" 'text)
+
+)
+
+(define-event Botón1 Click()(set-this-form)
+    (call-component-method 'TinyBD1 'StoreValue (*list-for-runtime* "USUARIO"  (get-property 'CampoDeTexto1 'Text)) '(text any))(call-component-method 'TinyBD1 'StoreValue (*list-for-runtime* "EDAD"  (get-property 'TextBox1 'Text)) '(text any))(call-component-method 'TinyBD1 'StoreValue (*list-for-runtime* "NACIONALIDAD"  (get-property 'TextBox2 'Text)) '(text any))(call-component-method 'TinyBD1 'StoreValue (*list-for-runtime* "PUNTOS"  "0") '(text any)))
+;;; Archivo1
+
+(add-component ajustes File Archivo1 
+)
+
+;;; TinyBD1
+
+(add-component ajustes TinyDB TinyBD1 
+)
+
+(init-runtime)

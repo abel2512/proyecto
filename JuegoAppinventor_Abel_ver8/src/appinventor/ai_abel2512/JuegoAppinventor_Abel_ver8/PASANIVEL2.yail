@@ -1,0 +1,56 @@
+#|
+$Source $Yail
+|#
+
+(define-form appinventor.ai_abel2512.JuegoAppinventor_Abel_ver3.PASANIVEL2 PASANIVEL2)
+(require <com.google.youngandroid.runtime>)
+
+;;; PASANIVEL2
+
+(do-after-form-creation (set-and-coerce-property! 'PASANIVEL2 'AppName "JuegoAppinventor_Abel_ver3" 'text)
+ (set-and-coerce-property! 'PASANIVEL2 'BackgroundImage "MINIONSPASA.jpg" 'text)
+ (set-and-coerce-property! 'PASANIVEL2 'Title "PASANIVEL2" 'text)
+)
+
+;;; Etiqueta1
+
+(add-component PASANIVEL2 Label Etiqueta1 
+(set-and-coerce-property! 'Etiqueta1 'FontSize 20 'number)
+
+(set-and-coerce-property! 'Etiqueta1 'Text "ENHORABUENA, PASA AL NIVEL 2" 'text)
+
+(set-and-coerce-property! 'Etiqueta1 'TextAlignment 1 'number)
+
+)
+
+;;; Etiqueta2
+
+(add-component PASANIVEL2 Label Etiqueta2 
+(set-and-coerce-property! 'Etiqueta2 'FontSize 40 'number)
+
+)
+
+;;; DisposiciónHorizontal1
+
+(add-component PASANIVEL2 HorizontalArrangement DisposiciónHorizontal1 
+)
+
+;;; Botón1
+
+(add-component DisposiciónHorizontal1 Button Botón1 
+(set-and-coerce-property! 'Botón1 'Text "         ACEPTAR        " 'text)
+
+)
+
+(define-event Botón1 Click()(set-this-form)
+    (call-yail-primitive open-another-screen (*list-for-runtime* "nivel2") '(text) "open another screen"))
+;;; Botón2
+
+(add-component DisposiciónHorizontal1 Button Botón2 
+(set-and-coerce-property! 'Botón2 'Text "VOLVER A MENU" 'text)
+
+)
+
+(define-event Botón2 Click()(set-this-form)
+    (call-yail-primitive open-another-screen (*list-for-runtime* "Screen1") '(text) "open another screen"))
+(init-runtime)

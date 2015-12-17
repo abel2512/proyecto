@@ -1,0 +1,89 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <block type="component_event" id="1" x="-109" y="-496">
+    <mutation component_type="Button" instance_name="Botón1" event_name="Click"></mutation>
+    <field name="COMPONENT_SELECTOR">Botón1</field>
+    <statement name="DO">
+      <block type="controls_openAnotherScreen" id="2" inline="false">
+        <value name="SCREEN">
+          <block type="text" id="3">
+            <field name="TEXT">ayuda</field>
+          </block>
+        </value>
+      </block>
+    </statement>
+  </block>
+  <block type="component_event" id="51" x="439" y="-450">
+    <mutation component_type="Button" instance_name="BOTSALIR" event_name="Click"></mutation>
+    <field name="COMPONENT_SELECTOR">BOTSALIR</field>
+    <statement name="DO">
+      <block type="controls_closeApplication" id="70"></block>
+    </statement>
+  </block>
+  <block type="component_event" id="4" x="-114" y="-417">
+    <mutation component_type="Button" instance_name="Botón5" event_name="Click"></mutation>
+    <field name="COMPONENT_SELECTOR">Botón5</field>
+    <statement name="DO">
+      <block type="controls_openAnotherScreen" id="5" inline="false">
+        <value name="SCREEN">
+          <block type="text" id="6">
+            <field name="TEXT">nivel1</field>
+          </block>
+        </value>
+      </block>
+    </statement>
+  </block>
+  <block type="component_event" id="7" x="-116" y="-253">
+    <mutation component_type="Button" instance_name="Botón2" event_name="Click"></mutation>
+    <field name="COMPONENT_SELECTOR">Botón2</field>
+    <statement name="DO">
+      <block type="controls_openAnotherScreen" id="8" inline="false">
+        <value name="SCREEN">
+          <block type="text" id="9">
+            <field name="TEXT">ajustes</field>
+          </block>
+        </value>
+      </block>
+    </statement>
+  </block>
+  <block type="component_event" id="10" x="-106" y="-176">
+    <mutation component_type="Form" instance_name="Screen1" event_name="Initialize"></mutation>
+    <field name="COMPONENT_SELECTOR">Screen1</field>
+    <statement name="DO">
+      <block type="component_set_get" id="11" inline="false">
+        <mutation component_type="TextBox" set_or_get="set" property_name="Text" is_generic="false" instance_name="CampoDeTexto3"></mutation>
+        <field name="COMPONENT_SELECTOR">CampoDeTexto3</field>
+        <field name="PROP">Text</field>
+        <value name="VALUE">
+          <block type="component_method" id="12" inline="false">
+            <mutation component_type="TinyDB" method_name="GetValue" is_generic="false" instance_name="TinyBD1"></mutation>
+            <field name="COMPONENT_SELECTOR">TinyBD1</field>
+            <value name="ARG0">
+              <block type="text" id="13">
+                <field name="TEXT">USUARIO</field>
+              </block>
+            </value>
+            <value name="ARG1">
+              <block type="text" id="14">
+                <field name="TEXT">DESCONOCIDO</field>
+              </block>
+            </value>
+          </block>
+        </value>
+      </block>
+    </statement>
+  </block>
+  <block type="component_event" id="15" x="-103" y="-51">
+    <mutation component_type="Button" instance_name="Botón4" event_name="Click"></mutation>
+    <field name="COMPONENT_SELECTOR">Botón4</field>
+    <statement name="DO">
+      <block type="controls_openAnotherScreen" id="16" inline="false">
+        <value name="SCREEN">
+          <block type="text" id="17">
+            <field name="TEXT">Screen3</field>
+          </block>
+        </value>
+      </block>
+    </statement>
+  </block>
+  <yacodeblocks ya-version="140" language-version="19"></yacodeblocks>
+</xml>

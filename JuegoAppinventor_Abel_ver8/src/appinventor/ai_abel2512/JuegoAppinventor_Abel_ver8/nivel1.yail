@@ -1,0 +1,180 @@
+#|
+$Source $Yail
+|#
+
+(define-form appinventor.ai_abel2512.JuegoAppinventor_Abel_ver3.nivel1 Screen1)
+(require <com.google.youngandroid.runtime>)
+
+(def g$holes (call-yail-primitive make-yail-list (*list-for-runtime* ) '() "make a list"))
+(def (p$MoveMole )  (let ( ($currentHole (call-yail-primitive yail-list-pick-random (*list-for-runtime* (get-var g$holes) ) '(list) "pick random item"))  )   (call-component-method 'Mole 'MoveTo (*list-for-runtime* (get-property-and-check  (lexical-value $currentHole) 'ImageSprite 'X)  (get-property-and-check  (lexical-value $currentHole) 'ImageSprite 'Y)) '(number number)) ))
+(def (p$fintiempo )  (call-component-method 'TinyBD1 'StoreValue (*list-for-runtime* "PUNTUACION"  (get-property 'ScoreValueLabel 'Text)) '(text any))(if (call-yail-primitive string=? (*list-for-runtime* (get-property 'tiempo 'Text) "20") '(text text) "text=") (begin   ((get-var p$pasarnivel) ))))
+(def (p$pasarnivel )  (call-component-method 'TinyBD1 'StoreValue (*list-for-runtime* "PUNTOSPARAPASAR"  "5") '(text any))(if (call-yail-primitive < (*list-for-runtime* (get-property 'ScoreValueLabel 'Text) 5) '(number number) "<") (begin   (call-yail-primitive open-another-screen (*list-for-runtime* "GAMEOVER") '(text) "open another screen")))(if (call-yail-primitive yail-equal? (*list-for-runtime* (get-property 'ScoreValueLabel 'Text) 5) '(any any) "=") (begin   (call-yail-primitive open-another-screen (*list-for-runtime* "PASANIVEL2") '(text) "open another screen")))(if (call-yail-primitive > (*list-for-runtime* (get-property 'ScoreValueLabel 'Text) 5) '(number number) ">") (begin   (call-yail-primitive open-another-screen (*list-for-runtime* "PASANIVEL2") '(text) "open another screen"))))
+;;; Screen1
+
+(do-after-form-creation (set-and-coerce-property! 'Screen1 'AppName "JuegoAbel" 'text)
+ (set-and-coerce-property! 'Screen1 'Icon "mole.png" 'text)
+ (set-and-coerce-property! 'Screen1 'Scrollable #t 'boolean)
+ (set-and-coerce-property! 'Screen1 'Title "NIVEL 1" 'text)
+)
+
+(define-event Screen1 Initialize()(set-this-form)
+    (call-yail-primitive yail-list-add-to-list! (*list-for-runtime* (get-var g$holes) (get-component Hole1) (get-component Hole2) (get-component Hole3) (get-component Hole4) (get-component Hole5) ) '(list any any any any any ) "add items to list")(foreach $hole (begin   (set-and-coerce-property-and-check! (lexical-value $hole) 'ImageSprite 'Picture "hole.png" 'text)) (get-var g$holes))((get-var p$MoveMole) ))
+;;; Canvas1
+
+(add-component Screen1 Canvas Canvas1 
+(set-and-coerce-property! 'Canvas1 'BackgroundColor #xFF00FF00 'number)
+
+(set-and-coerce-property! 'Canvas1 'Height 320 'number)
+
+(set-and-coerce-property! 'Canvas1 'Width 320 'number)
+
+(set-and-coerce-property! 'Canvas1 'TextAlignment 0 'number)
+
+)
+
+;;; Hole1
+
+(add-component Canvas1 ImageSprite Hole1 
+(set-and-coerce-property! 'Hole1 'X 20 'number)
+
+(set-and-coerce-property! 'Hole1 'Y 60 'number)
+
+)
+
+;;; Hole2
+
+(add-component Canvas1 ImageSprite Hole2 
+(set-and-coerce-property! 'Hole2 'X 130 'number)
+
+(set-and-coerce-property! 'Hole2 'Y 60 'number)
+
+)
+
+;;; Hole3
+
+(add-component Canvas1 ImageSprite Hole3 
+(set-and-coerce-property! 'Hole3 'X 240 'number)
+
+(set-and-coerce-property! 'Hole3 'Y 60 'number)
+
+)
+
+;;; Hole5
+
+(add-component Canvas1 ImageSprite Hole5 
+(set-and-coerce-property! 'Hole5 'X 185 'number)
+
+(set-and-coerce-property! 'Hole5 'Y 140 'number)
+
+)
+
+;;; Mole
+
+(add-component Canvas1 ImageSprite Mole 
+(set-and-coerce-property! 'Mole 'Picture "mole.png" 'text)
+
+(set-and-coerce-property! 'Mole 'X 165 'number)
+
+(set-and-coerce-property! 'Mole 'Y 236 'number)
+
+(set-and-coerce-property! 'Mole 'Z 2 'number)
+
+)
+
+(define-event Mole Touched($x $y)(set-this-form)
+    (set-and-coerce-property! 'ScoreValueLabel 'Text (call-yail-primitive + (*list-for-runtime* 1 (get-property 'ScoreValueLabel 'Text) ) '(number number ) "+") 'text)(call-component-method 'Buzzer 'Vibrate (*list-for-runtime* 100) '(number))((get-var p$MoveMole) ))
+;;; Hole4
+
+(add-component Canvas1 ImageSprite Hole4 
+(set-and-coerce-property! 'Hole4 'X 75 'number)
+
+(set-and-coerce-property! 'Hole4 'Y 140 'number)
+
+)
+
+;;; HorizontalArrangement1
+
+(add-component Screen1 HorizontalArrangement HorizontalArrangement1 
+(set-and-coerce-property! 'HorizontalArrangement1 'AlignHorizontal 3 'number)
+
+(set-and-coerce-property! 'HorizontalArrangement1 'Width -2 'number)
+
+)
+
+;;; ScoreArrangement
+
+(add-component HorizontalArrangement1 HorizontalArrangement ScoreArrangement 
+)
+
+;;; ScoreTextLabel
+
+(add-component ScoreArrangement Label ScoreTextLabel 
+(set-and-coerce-property! 'ScoreTextLabel 'FontSize 28.0 'number)
+
+(set-and-coerce-property! 'ScoreTextLabel 'HasMargins #f 'boolean)
+
+(set-and-coerce-property! 'ScoreTextLabel 'Text "Puntos:" 'text)
+
+)
+
+;;; ScoreValueLabel
+
+(add-component ScoreArrangement Label ScoreValueLabel 
+(set-and-coerce-property! 'ScoreValueLabel 'FontSize 28.0 'number)
+
+(set-and-coerce-property! 'ScoreValueLabel 'HasMargins #f 'boolean)
+
+(set-and-coerce-property! 'ScoreValueLabel 'Text "0" 'text)
+
+)
+
+;;; Etiqueta1
+
+(add-component HorizontalArrangement1 Label Etiqueta1 
+(set-and-coerce-property! 'Etiqueta1 'FontSize 20 'number)
+
+(set-and-coerce-property! 'Etiqueta1 'Text "Tiempo:" 'text)
+
+)
+
+;;; tiempo
+
+(add-component HorizontalArrangement1 Label tiempo 
+(set-and-coerce-property! 'tiempo 'FontSize 20 'number)
+
+(set-and-coerce-property! 'tiempo 'Text "0" 'text)
+
+)
+
+;;; Button2
+
+(add-component Screen1 Button Button2 
+(set-and-coerce-property! 'Button2 'Text "VOLVER A MENU" 'text)
+
+)
+
+(define-event Button2 Click()(set-this-form)
+    (call-yail-primitive open-another-screen (*list-for-runtime* "Screen1") '(text) "open another screen"))
+;;; MoleClock
+
+(add-component Screen1 Clock MoleClock 
+)
+
+(define-event MoleClock Timer()(set-this-form)
+    ((get-var p$MoveMole) )(set-and-coerce-property! 'tiempo 'Text (call-yail-primitive + (*list-for-runtime* 1 (get-property 'tiempo 'Text) ) '(number number ) "+") 'text)((get-var p$fintiempo) ))
+;;; Buzzer
+
+(add-component Screen1 Sound Buzzer 
+)
+
+;;; Sound1
+
+(add-component Screen1 Sound Sound1 
+)
+
+;;; TinyBD1
+
+(add-component Screen1 TinyDB TinyBD1 
+)
+
+(init-runtime)

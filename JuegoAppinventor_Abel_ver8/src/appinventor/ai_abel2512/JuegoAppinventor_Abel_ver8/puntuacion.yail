@@ -1,0 +1,87 @@
+#|
+$Source $Yail
+|#
+
+(define-form appinventor.ai_abel2512.JuegoAppinventor_Abel_ver3.Screen3 Screen3)
+(require <com.google.youngandroid.runtime>)
+
+;;; Screen3
+
+(do-after-form-creation (set-and-coerce-property! 'Screen3 'AlignHorizontal 3 'number)
+ (set-and-coerce-property! 'Screen3 'AppName "JuegoAppinventor_Abel_ver3" 'text)
+ (set-and-coerce-property! 'Screen3 'BackgroundImage "fondo1.jpg" 'text)
+ (set-and-coerce-property! 'Screen3 'Title "PUNTUACI\u00d3N M\u00c1XIMA" 'text)
+)
+
+(define-event Screen3 Initialize()(set-this-form)
+    (set-and-coerce-property! 'PUNTOS 'Text (call-component-method 'TinyBD1 'GetValue (*list-for-runtime* "PUNTOSMAXIMOS"  "0") '(text any)) 'text)(set-and-coerce-property! 'USUARIO 'Text (call-component-method 'TinyBD1 'GetValue (*list-for-runtime* "USUARIO1"  "SIN IDENTIFICAR") '(text any)) 'text))
+;;; Etiqueta1
+
+(add-component Screen3 Label Etiqueta1 
+(set-and-coerce-property! 'Etiqueta1 'FontBold #t 'boolean)
+
+(set-and-coerce-property! 'Etiqueta1 'FontSize 20 'number)
+
+(set-and-coerce-property! 'Etiqueta1 'Text "LA PUNTUACI\u00d3N M\u00c1XIMA ES:" 'text)
+
+(set-and-coerce-property! 'Etiqueta1 'TextColor #xFFFFFFFF 'number)
+
+)
+
+;;; PUNTOS
+
+(add-component Screen3 Label PUNTOS 
+(set-and-coerce-property! 'PUNTOS 'FontSize 30 'number)
+
+(set-and-coerce-property! 'PUNTOS 'Text "0" 'text)
+
+(set-and-coerce-property! 'PUNTOS 'TextColor #xFFFFFFFF 'number)
+
+)
+
+;;; Etiqueta2
+
+(add-component Screen3 Label Etiqueta2 
+(set-and-coerce-property! 'Etiqueta2 'FontBold #t 'boolean)
+
+(set-and-coerce-property! 'Etiqueta2 'FontSize 20 'number)
+
+(set-and-coerce-property! 'Etiqueta2 'Text "DEL USUARIO:" 'text)
+
+(set-and-coerce-property! 'Etiqueta2 'TextColor #xFFFFFFFF 'number)
+
+)
+
+;;; USUARIO
+
+(add-component Screen3 Label USUARIO 
+(set-and-coerce-property! 'USUARIO 'FontBold #t 'boolean)
+
+(set-and-coerce-property! 'USUARIO 'FontSize 22 'number)
+
+(set-and-coerce-property! 'USUARIO 'Text "Texto para Etiqueta3" 'text)
+
+(set-and-coerce-property! 'USUARIO 'TextColor #xFFFFFFFF 'number)
+
+)
+
+;;; Etiqueta3
+
+(add-component Screen3 Label Etiqueta3 
+)
+
+;;; Botón1
+
+(add-component Screen3 Button Botón1 
+(set-and-coerce-property! 'Botón1 'Text "VOLVER A MENU" 'text)
+
+)
+
+(define-event Botón1 Click()(set-this-form)
+    (call-yail-primitive open-another-screen (*list-for-runtime* "Screen1") '(text) "open another screen"))
+;;; TinyBD1
+
+(add-component Screen3 TinyDB TinyBD1 
+)
+
+(init-runtime)
